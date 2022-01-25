@@ -28,7 +28,7 @@ RUN chmod +x /usr/bin/fwatchdog
 
 # ---
 # Install git
-RUN apk --no-cache add curl ca-certificates git git-flow \
+RUN apk --no-cache add curl ca-certificates bash tree git git-flow \
     && addgroup -S app && adduser -S -g app app
 
 # ---
