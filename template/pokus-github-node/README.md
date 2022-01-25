@@ -25,15 +25,44 @@ faas-cli template pull https://github.com/pokusio/gh-cli-openfaas-template
 faas-cli new --lang "${FAAS_TEMPLATE_NAME}" "${FAAS_FUNC_NAME}"
 # will generate the [my-new-awesome-function.yml].
 
+cat << EOF > $(pwd)/${FAAS_FUNC_NAME}.yml
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:8080
+functions:
+  my-new-awesome-function:
+    lang: pokus-github-node
+    handler: ./my-new-awesome-function
+    # image: my-new-awesome-function:latest
+    image: 192.168.208.7:5000/pokus/faas-github-cli-node16:0.0.1
+    secrets:
+      - pokusbot-gh-token
+EOF
 
 ```
 
-* edit the `my-new-awesome-function.yml`, and append this to it :
+* edit the `my-new-awesome-function.yml`, to modify image name and append this to it :
 
-```Yaml
-    image: 192.168.208.7:5000/pokus/faas-node16:0.0.1
+```bash
+export FAAS_FUNC_NAME="my-new-awesome-function"
+export FAAS_TEMPLATE_NAME="pokus-github-node"
+export DOCKHOST_IP_ADDR="192.168.208.7"
+cat << EOF > $(pwd)/${FAAS_FUNC_NAME}.yml
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:8080
+functions:
+  ${FAAS_FUNC_NAME}:
+    lang: pokus-github-node
+    handler: ./${FAAS_FUNC_NAME}n
+    # image: ${FAAS_FUNC_NAME}:latest
+    image: ${DOCKHOST_IP_ADDR}:5000/pokus/faas-github-cli-node16:0.0.1
     secrets:
       - pokusbot-gh-token
+EOF
+
 ```
 
 * build n deploy your function :
