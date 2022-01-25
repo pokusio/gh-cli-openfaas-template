@@ -1,5 +1,5 @@
 {
-  "name": "pokus-gh-cli-node",
+  "name": "openfaas-node12",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "test": "echo \"Error: no tests specified\" && exit 0"
   },
   "keywords": [],
-  "author": "Pookus Inc.",
+  "author": "OpenFaaS Ltd",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.2",

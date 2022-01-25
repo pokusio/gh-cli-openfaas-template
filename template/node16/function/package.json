@@ -8,8 +8,5 @@
   },
   "keywords": [],
   "author": "OpenFaaS Ltd",
-  "license": "MIT",
-  "dependencies": {
-    "shelljs": "^0.8.5"
-  }
+  "license": "MIT"
 }
