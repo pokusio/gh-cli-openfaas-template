@@ -27,14 +27,15 @@ faas-cli new --lang "${FAAS_TEMPLATE_NAME}" "${FAAS_FUNC_NAME}"
 * edit the `my-new-awesome-function.yml`, and append this to it :
 
 ```Yaml
-secrets:
-  - pokusbot-gh-token
+    image: 192.168.208.7:5000/pokus/faas-node16:0.0.1
+    secrets:
+      - pokusbot-gh-token
 ```
 
 * build n deploy your function :
 
 ```bash
-# Bellow is a local ip address :
+# Below is a local ip address :
 # OpenFAAS : I locally run k3d with 3 servers n 3 agents
 # Docker Registry : I locally run docker-compose
 export DOCKHOST_IP_ADDR="192.168.208.7"
@@ -43,6 +44,24 @@ export DOCKHOST_IP_ADDR="192.168.208.7"
 export OF_TEMPLATE_IMAGE_NAME="${DOCKHOST_IP_ADDR}:5000/pokus/faas-gh-cli-node16:latest"
 
 faas-cli up --build-arg AWESOME=true --image "${OF_TEMPLATE_IMAGE_NAME}" -f my-new-awesome-function.yml ${HERAOHERE}/wehereiwork/my-new-awesome-function/handler.js
+
+```
+
+* test your new github cli augmented faas function :
+
+```bash
+# Below is a local ip address :
+# OpenFAAS : I locally run k3d with 3 servers n 3 agents
+# Docker Registry : I locally run docker-compose
+export DOCKHOST_IP_ADDR="192.168.208.7"
+
+curl -X POST http://127.0.0.1:8080/function/my-new-awesome-function \
+  -H "Content-Type: application/json" \
+  -d '{ "url": "https://randomuser.me/api/", "name": "pokustest"}'
+
+curl -X POST http://${DOCKHOST_IP_ADDR}:8080/function/my-new-awesome-function \
+  -H "Content-Type: application/json" \
+  -d '{ "url": "https://randomuser.me/api/", "name": "pokustest"}'
 
 ```
 

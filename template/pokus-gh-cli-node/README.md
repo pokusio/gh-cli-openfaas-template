@@ -27,6 +27,7 @@ faas-cli new --lang "${FAAS_TEMPLATE_NAME}" "${FAAS_FUNC_NAME}"
 * edit the `my-new-awesome-function.yml`, and append this to it :
 
 ```Yaml
+    image: 192.168.208.7:5000/pokus/faas-node16:0.0.1
     secrets:
       - pokusbot-gh-token
 ```
