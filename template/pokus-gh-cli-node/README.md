@@ -27,8 +27,8 @@ faas-cli new --lang "${FAAS_TEMPLATE_NAME}" "${FAAS_FUNC_NAME}"
 * edit the `my-new-awesome-function.yml`, and append this to it :
 
 ```Yaml
-secrets:
-  - pokusbot-gh-token
+    secrets:
+      - pokusbot-gh-token
 ```
 
 * build n deploy your function :
@@ -53,6 +53,7 @@ faas-cli up --build-arg AWESOME=true --image "${OF_TEMPLATE_IMAGE_NAME}" -f my-n
 # OpenFAAS : I locally run k3d with 3 servers n 3 agents
 # Docker Registry : I locally run docker-compose
 export DOCKHOST_IP_ADDR="192.168.208.7"
+
 curl -X POST http://127.0.0.1:8080/function/my-new-awesome-function \
   -H "Content-Type: application/json" \
   -d '{ "url": "https://randomuser.me/api/", "name": "pokustest"}'
