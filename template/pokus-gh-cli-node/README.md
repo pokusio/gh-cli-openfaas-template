@@ -17,11 +17,15 @@ echo "${GH_PERSONAL_ACCESS_TOKEN}" | faas-cli secret create pokusbot-gh-token
 
 ```bash
 export FAAS_FUNC_NAME="my-new-awesome-function"
+
 export FAAS_TEMPLATE_NAME="pokus-gh-cli-node"
+export FAAS_TEMPLATE_NAME="pokus-github-node"
 
 faas-cli template pull https://github.com/pokusio/gh-cli-openfaas-template
 faas-cli new --lang "${FAAS_TEMPLATE_NAME}" "${FAAS_FUNC_NAME}"
 # will generate the [my-new-awesome-function.yml].
+
+
 ```
 
 * edit the `my-new-awesome-function.yml`, and append this to it :
