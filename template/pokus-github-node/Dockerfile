@@ -34,7 +34,7 @@ RUN apk --no-cache add curl ca-certificates git git-flow \
 # ---
 # Install github cli
 
-COPY install-gh-cli.gnu.linux.amd64.sh ./install-gh-cli.gnu.linux.amd64.sh
+COPY install-gh-cli.gnu.linux.amd64.sh ./
 RUN chmod +x ./install-gh-cli.gnu.linux.amd64.sh && ./install-gh-cli.gnu.linux.amd64.sh
 # ---
 # Turn down the verbosity to default level.
