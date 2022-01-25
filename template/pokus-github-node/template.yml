@@ -1,8 +1,15 @@
 language: pokus-github-node
 fprocess: node index.js
-    image: 192.168.208.7:5000/pokus/faas-github-cli-node16:0.0.1
-    secrets:
-      - pokusbot-gh-token
+build_options:
+  - name: "192.168.208.7:5000/pokus/faas-github-cli-node16:0.0.1"
+    packages:
+    - curl
+    - ca-certificates
+    - git
+    - wget
+image: 192.168.208.7:5000/pokus/faas-github-cli-node16:0.0.1
+secrets:
+  - pokusbot-gh-token
 welcome_message: |
   You have created a new function which uses Node.js 16 (LTS) and the OpenFaaS
   of-watchdog which gives greater control over HTTP responses.
